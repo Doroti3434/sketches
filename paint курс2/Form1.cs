@@ -82,7 +82,14 @@ namespace paint_курс2
             }
 
         }
-
+        private void pic_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (index == 7)
+            {
+                Point point = set_point(pic, e.Location);
+                FillPointsClass.Fill(bm, point.X, point.Y, new_color);
+            }
+        }
         private void pic_MouseDown(object sender, MouseEventArgs e)
         {
             paint = true;
@@ -91,8 +98,11 @@ namespace paint_курс2
             cX = e.X;
             cY = e.Y;
 
-            
+
         }
+
+
+
 
 
         //фигуры и линии
@@ -102,24 +112,18 @@ namespace paint_курс2
             p.StartCap = System.Drawing.Drawing2D.LineCap.Round;
             p.EndCap = System.Drawing.Drawing2D.LineCap.Round;
         }
-
         private void btn_eraser_Click(object sender, EventArgs e)
         {
             index = 2;
         }
-
         private void btn_ellipse_Click(object sender, EventArgs e)
         {
             index = 3;
         }
-
         private void btn_rect_Click(object sender, EventArgs e)
         {
             index = 4;
         }
-
-      
-
         private void btn_line_Click(object sender, EventArgs e)
         {
             index = 5;
@@ -129,6 +133,8 @@ namespace paint_курс2
             index = 7;
         }
 
+
+
         // палетка сохраняшка и клинер
         private void btn_color_Click(object sender, EventArgs e)
         {
@@ -137,6 +143,7 @@ namespace paint_курс2
                 p.Color = colorDialog1.Color;
                 pic_color.BackColor = colorDialog1.Color;
                 new_color = cd.Color;
+               // p.Color = pic_color.BackColor;
 
             }
         }
@@ -147,34 +154,19 @@ namespace paint_курс2
             pic.Image = bm;
         }
 
-      
-
         private void btn_saver_Click(object sender, EventArgs e)
         {
             saveFileDialog1.Filter = "JPG(*.JPG)|*.jpg";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                if (pic.Image == null)
+                if (pic.Image != null)
                 {
                     pic.Image.Save(saveFileDialog1.FileName);
                 }
             }
         }
 
-        private void color_picker_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pic_color_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pic_Click(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void pic_Paint(object sender, PaintEventArgs e)
         {
@@ -210,53 +202,10 @@ namespace paint_курс2
             Point point = set_point(color_picker, e.Location);
             pic_color.BackColor = ((Bitmap)color_picker.Image).GetPixel(point.X, point.Y);
             new_color = pic_color.BackColor;
+            
             p.Color = pic_color.BackColor;
+            
         }
-
-
-        private void validate (Bitmap bm, Stack<Point>sp, int x, int y, Color old_color, Color new_color )
-        {
-            Color cx = bm.GetPixel(x, y);
-            if(cx == old_color)
-            {
-                sp.Push(new Point(x, y));
-                bm.SetPixel(x, y, new_color);
-            }
-        }
-
-        public void Fill(Bitmap bm,int x, int y, Color new_clr ) // загадка вселенной
-        {
-            Color old_color = bm.GetPixel(x, y);
-            Stack<Point> pixel = new Stack<Point>();
-            pixel.Push(new Point(x, y));
-            bm.SetPixel(x,y,new_clr);
-            if (old_color == new_clr) return;
-
-            while(pixel.Count > 0)
-            {
-                Point pt = (Point)pixel.Pop();
-                if(pt.X > 0 && pt.Y>0 && pt.X < bm.Width - 1 && pt.Y < bm.Height - 1)
-                {
-                    validate(bm, pixel, pt.X - 1, pt.Y, old_color, new_clr);
-                    validate(bm, pixel, pt.X, pt.Y - 1, old_color, new_clr);
-                    validate(bm, pixel, pt.X + 1, pt.Y, old_color, new_clr);
-                    validate(bm, pixel, pt.X, pt.Y + 1, old_color, new_clr);
-                   
-                }
-            }
-           
-        }
-
-        private void pic_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (index == 7)
-            {
-                Point point = set_point(pic, e.Location);
-                Fill(bm, point.X, point.Y, new_color);
-            }
-        }
-
-
 
     }
 }

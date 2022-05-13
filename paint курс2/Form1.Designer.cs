@@ -42,11 +42,11 @@
             this.pic_color = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btn_color = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pic = new System.Windows.Forms.PictureBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.color_picker)).BeginInit();
             this.panel4.SuspendLayout();
@@ -105,7 +105,6 @@
             this.color_picker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.color_picker.TabIndex = 11;
             this.color_picker.TabStop = false;
-            this.color_picker.Click += new System.EventHandler(this.color_picker_Click);
             this.color_picker.MouseClick += new System.Windows.Forms.MouseEventHandler(this.color_picker_MouseClick);
             // 
             // btn_line
@@ -212,7 +211,6 @@
             this.pic_color.Size = new System.Drawing.Size(50, 50);
             this.pic_color.TabIndex = 0;
             this.pic_color.UseVisualStyleBackColor = false;
-            this.pic_color.Click += new System.EventHandler(this.pic_color_Click);
             // 
             // panel4
             // 
@@ -239,14 +237,6 @@
             this.btn_color.UseVisualStyleBackColor = false;
             this.btn_color.Click += new System.EventHandler(this.btn_color_Click);
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Black;
-            this.panel3.Location = new System.Drawing.Point(313, 115);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(385, 80);
-            this.panel3.TabIndex = 10;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Silver;
@@ -265,12 +255,19 @@
             this.pic.Size = new System.Drawing.Size(914, 388);
             this.pic.TabIndex = 2;
             this.pic.TabStop = false;
-            this.pic.Click += new System.EventHandler(this.pic_Click);
             this.pic.Paint += new System.Windows.Forms.PaintEventHandler(this.pic_Paint);
             this.pic.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pic_MouseClick);
             this.pic.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pic_MouseDown);
             this.pic.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pic_MouseMove);
             this.pic.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pic_MouseUp);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Black;
+            this.panel3.Location = new System.Drawing.Point(313, 115);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(385, 80);
+            this.panel3.TabIndex = 10;
             // 
             // Form1
             // 
@@ -279,8 +276,8 @@
             this.ClientSize = new System.Drawing.Size(914, 511);
             this.Controls.Add(this.pic);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -306,12 +303,12 @@
         private Button btn_color;
         private Button btn_fill;
         private Button btn_line;
-        private Panel panel3;
         private PictureBox color_picker;
         private Panel panel4;
         private ColorDialog colorDialog1;
         private Button btn_Clear;
         private Button btn_saver;
         private SaveFileDialog saveFileDialog1;
+        private Panel panel3;
     }
 }
